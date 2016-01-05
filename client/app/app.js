@@ -6,7 +6,8 @@ angular.module('generatorAngularFullstackApp', [
   'ngSanitize',
   'btford.socket-io',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'angular-plaid-link'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -15,6 +16,18 @@ angular.module('generatorAngularFullstackApp', [
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
   })
+
+  .config([
+    'plaidLinkProvider', function(plaidLinkProvider) {
+      plaidLinkProvider.init({
+        clientName: 'YoloBudget',
+        env: 'tartan',
+        key: '2c8e2aed927f4f23902888d7808353',
+        product: 'connect',
+        longTail: true
+      });
+    }
+  ])
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
     return {

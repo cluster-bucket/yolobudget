@@ -13,9 +13,18 @@
         <button type="submit" class="btn btn-primary" ng-click="addAccount()">Add New</button>
       </form>
 
-      <ul ng-repeat="account in accounts">
-        <li><a href="#" tooltip="{{account.name}}">{{account.name}}</a></li>
-      </ul>
+      <table class="table table-striped">
+        <thead>
+          <th>Account</th>
+          <th class="text-right">Connection</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="account in accounts">
+            <td>{{account.name}}</td>
+            <td><button type="submit" class="btn btn-primary" ng-click="connectAccount(account._id)">Connect</button></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
